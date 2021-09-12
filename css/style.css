@@ -38,9 +38,9 @@ body {
 }
 .single-product {
   padding: 10px;
-  /* height: 473px; */
+  min-height: 470px;
   transition: 0.6s;
-  background-color: #99e1d9;
+  background-color: #ececec;
   margin: 7px;
   border-radius: 5px;
 }

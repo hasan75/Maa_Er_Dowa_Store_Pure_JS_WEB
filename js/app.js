@@ -8,8 +8,10 @@ const loadProducts = () => {
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
+  console.log(allProducts)
   for (const product of allProducts) {
-    const image = product.images;
+    console.log(product)
+    const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -34,6 +36,7 @@ const addToCart = (id, price) => {
   document.getElementById("total-Products").innerText = count;
 };
 
+//function for converting the price & tax & delivery cost to float
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
