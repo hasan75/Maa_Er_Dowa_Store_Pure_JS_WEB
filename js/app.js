@@ -20,13 +20,39 @@ const showProducts = (products) => {
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
       <h2>Price: $ ${product.price}</h2>
-      <p><i class="text-primary fas fa-star"></i> <span class="text-warning"> Rating: ${product.rating.rate}</span> <span class="text-success"> (${product.rating.count}) </span></p>
+      <p class="rating"><i class="text-primary fas fa-star"></i> <span class="text-warning"> Rating: ${product.rating.rate}</span> <span class="text-success"> (${product.rating.count}) </span></p>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button id="details-btn" onclick="loadDetail(${product.id})" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+//loadDetail of a single product
+const loadDetail = productId => {
+  const url = `https://fakestoreapi.com/products/${productId}`
+  fetch(url)
+  .then(res => res.json())
+  .then(data => displayDetails(data))
+  
+}
+
+const displayDetails = product => {
+  const div = document.getElementById('detailed');
+  div.innerHTML = `
+  <div class="single-product text-center">
+    <div>
+      <img class="detail-product-image" src=${product.image}></img>
+    </div>
+    <h3>${product.title}</h3>
+    <p>Category: ${product.category}</p>
+    <h2>Price: $ ${product.price}</h2>
+    <p class="rating"><i class="text-primary fas fa-star"></i> <span class="text-warning"> Rating: ${product.rating.rate}</span> <span class="text-success"> (${product.rating.count}) </span></p>
+    <p><span class="description">Description:</span>${product.description}</p>
+  </div>
+  `;
+}
+
+
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
